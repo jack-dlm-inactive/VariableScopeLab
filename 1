@@ -1,0 +1,194 @@
+//-----------------------------------------
+// Program: Variable Scope Lab 
+// Author:  Jauhm Brasseur
+// Date:    2/7/2017
+// Description:   
+//-----------------------------------------
+
+class Main
+{
+	String className = this.getClass().getName();   // non-static 'this' cannot be used by static method
+
+	public static void main(String[] args)
+	{
+		//String className = this.getClass().getName();   // non-static 'this' cannot be used by static method
+		//System.out.println("---------------------------");
+		//System.out.println("Class:  Cow  " + className);
+
+		System.out.println("---------------------------");
+		System.out.println("Class:  VariableScope");
+		System.out.println("Method: main");
+		System.out.println("---------------------------");
+
+		// Instantiate a 'hereford' cow here:
+		Cow hereford = new Cow();
+	
+
+		System.out.println("-----------------");
+		System.out.println("Hereford");
+		System.out.println("-----------------");
+
+		//Set the cow weight & color here, make it clear which object you are setting !!
+		hereford.weight = 905;
+		hereford.color = "brown";
+		hereford.chewethTheCud = true;
+		hereford.favoriteFood = "grass";
+		hereford.bumpCount();
+		hereford.getCount();
+		cowInfo(hereford);
+		System.out.println();
+		
+		Cow blackAngus = new Cow();
+		System.out.println("-----------------");
+		System.out.println("Black Angus");
+		System.out.println("-----------------");
+		blackAngus.weight = 1000;
+		blackAngus.color = "black";
+		blackAngus.chewethTheCud = true;
+		blackAngus.favoriteFood = "grass";
+		blackAngus.bumpCount();
+		blackAngus.getCount();
+		//Increment the Class counter here.  Remember it is a 'class' variable, so you cannot touch it directly
+		
+		//cowInfo(hereford);
+		cowInfo(blackAngus);
+		System.out.println();
+		
+		Horse mustang = new Horse();
+		System.out.println("-----------------");
+		System.out.println("Mustang");
+		System.out.println("-----------------");
+		mustang.weight = 1000;
+		mustang.color = "black";
+		mustang.favoriteFood = "grass";
+		mustang.bumpCount();
+		mustang.getCount();
+		//Increment the Class counter here.  Remember it is a 'class' variable, so you cannot touch it directly
+		
+		//cowInfo(hereford);
+		horseInfo(mustang);
+		System.out.println();	
+
+
+	}
+	
+	// This prints all Cow class and instance variables
+	static void cowInfo (Cow obj)
+	{
+	
+		System.out.println("cowInfo method");
+		System.out.println(" --------------"); 
+		System.out.println("Family:  " + obj.family);    
+		System.out.println("Color: " + obj.color);
+		System.out.println("Weight: " + obj.weight);
+		System.out.println("Cheweth the cud: " + obj.chewethTheCud );
+		System.out.println("Favorite food: " + obj.favoriteFood);
+		System.out.println();
+		obj.printCount();
+
+	}
+		static void horseInfo (Horse obj)
+	{
+		System.out.println("horseInfo method");
+		System.out.println("--------------"); 
+		System.out.println("Family:  " + obj.family);    
+		System.out.println("Color: " + obj.color);
+		System.out.println("Weight: " + obj.weight);
+		System.out.println("Cheweth the cud: " + obj.chewethTheCud );
+		System.out.println("Favorite food: " + obj.favoriteFood);
+		System.out.println("");
+		obj.printCount();
+		System.out.println("");
+
+	}
+}
+
+
+//------------------------------------------------------
+class Cow
+{
+	//  Class (Static) variables -- shared by all objects instantiated from this class
+	static String family = "bovine";   
+	static boolean chewethTheCud = true;
+	static String favoriteFood = "oats";
+	private static int count = 0;       // Since private, it must be wrapped in a method
+	
+	//  Instance variables -- every object gets its own variable 
+	int weight = 0;                    
+    String color = "dun";
+	String className = this.getClass().getName();
+	
+	public void main(String[] args)
+	{
+		weight = 0;
+		String className = this.getClass().getName();
+		System.out.println("---------------------------");
+		System.out.println("Class:  Cow  " + className);
+		System.out.println("Method: main");
+	}
+		
+	public int getCount()
+	{
+		return count;
+	}
+	
+	public void bumpCount()
+	{
+		count++;
+	}
+	
+	public void printCount()
+	{
+		//String className = this.getClass().getName();
+			System.out.println("|-------------------|");
+		System.out.println( "|Cow.count = " + count + "      |");
+		System.out.println("|-------------------|");
+	}
+	
+	public void printFamily()
+	{
+		System.out.println("  " + className + ".family = " + count);
+		System.out.println("Cow.printFamily() = " + family);
+	}
+}
+
+
+//--------------------------------------------------------
+class Horse
+{
+	//  Class (Static) variables -- shared by all objects instantiated from this class
+	static String family = "hooved ungulate";   
+	static int count = 0;
+	static boolean chewethTheCud = false;
+	static String favoriteFood = "grass";
+	
+	//  Instance variables -- every object gets its own
+	int weight = 0;                    
+    String color = "weight";
+	
+	public void main(String[] args)
+	{
+		System.out.println("---------------------------");
+		System.out.println("Class:  Horse");
+		System.out.println("Method: main");
+
+	}
+	public int getCount()
+	{
+		return count;
+	}
+	
+	public void bumpCount()
+	{
+		count++;
+	}
+	
+	public void printCount()
+	{
+		//String className = this.getClass().getName();
+		System.out.println("|-------------------|");
+		System.out.println( "|Horse.count = " + count + "    |");
+		System.out.println("|-------------------|");
+	}
+	
+}
